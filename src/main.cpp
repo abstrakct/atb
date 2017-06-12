@@ -39,26 +39,29 @@ string getDepartureDataJson(string url)
 int main(int argc, char *argv[])
 {
 	string nodeID, url;
-	unsigned int i;
 
 	// simple argument handling for now
 	if(argc <= 1) {
-		cout << "Please provide departure code!" << endl;
+		cout << "Please provide nodeID for bus stop!" << endl;
 		return 0;
 	} else {
 		nodeID = argv[1];
-		i = atoi(argv[2]);
 	}
 
 	url = baseUrl + nodeID;
-	cout << "Using URL: " << url << endl << endl;
+	//cout << "Using URL: " << url << endl << endl;
+	cout << endl << "Neste fem avganger:" << endl << endl;
 
 	string jsonString = getDepartureDataJson(url);
 
 	Departure d;
-	if(d.parseJsonString(jsonString, i)) 
-		d.print();
+	for(unsigned int j = 0; j < 5; ++j) {
+		if(d.parseJsonString(jsonString, j)) {
+			d.printNatural();
+		}
+	}
 
+	cout << endl;
 	return 0;
 }
 

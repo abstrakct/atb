@@ -52,3 +52,12 @@ void Departure::print()
 
 	std::cout << std::endl;
 }
+
+void Departure::printNatural()
+{
+	if(line == "1") {
+		std::cout << "Trikken til " << destination << " kommer kl " << registeredDepartureTime << " (rutetabell: " << scheduledDepartureTime << ")" << endl;
+	} else {
+		std::cout << "Buss " << line << " til " << destination << " kommer kl " << registeredDepartureTime << " (rutetabell: " << scheduledDepartureTime << ")" << endl;
+	}
+}

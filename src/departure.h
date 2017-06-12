@@ -13,6 +13,7 @@ class Departure {
 
 		bool parseJsonString(string input, unsigned int index);
 		void print();
+		void printNatural();
 
 		string destination;
 		bool isRealtimeData;
