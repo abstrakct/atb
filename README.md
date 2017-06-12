@@ -11,11 +11,9 @@ example:
 
 atbcli 16010005
 
-atbcli makes heavy use of this work by mpolden:
-
+## Thanks
+atbcli probably wouldn't exist if not for this work by @mpolden:
 https://github.com/mpolden/atbapi
-
-Thanks! 
 
 This API exports the XML data from the AtB public API to sane JSON.
 libjson is then responsible for parsing the JSON data.
@@ -23,7 +21,13 @@ libjson is then responsible for parsing the JSON data.
 ## Compilation
 It should work to clone the repository and type 'make' in the top directory of the repository.
 
-### Dependencies
+## Dependencies
 * curl
 * libcurlpp
 * jsoncpp
+
+## Future goals/ideas
+* Get all publicly available data through the XML/SOAP API provided by AtB (atbapi by @mpolden seems to export a limited subset?)
+* Make it flexible and easy to use for everyone
+* Nice UI (ascii/text based probably)
+* Rewrite in python?
