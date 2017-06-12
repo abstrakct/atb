@@ -56,8 +56,8 @@ void Departure::print()
 void Departure::printNatural()
 {
 	if(line == "1") {
-		std::cout << "Trikken til " << destination << " kommer kl " << registeredDepartureTime << " (rutetabell: " << scheduledDepartureTime << ")" << endl;
+		std::cout << "Trikken til " << destination << (isGoingTowardsCentrum ? " (til byen)" : " (fra byen)") << " kommer kl " << registeredDepartureTime << " (rutetabell: " << scheduledDepartureTime << ")" << endl;
 	} else {
-		std::cout << "Buss " << line << " til " << destination << " kommer kl " << registeredDepartureTime << " (rutetabell: " << scheduledDepartureTime << ")" << endl;
+		std::cout << "Buss " << line << " til " << destination << (isGoingTowardsCentrum ? " (til byen)" : " (fra byen)") << " kommer kl " << registeredDepartureTime << " (rutetabell: " << scheduledDepartureTime << ")" << endl;
 	}
 }

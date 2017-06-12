@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	}
 
 	url = baseUrl + nodeID;
-	//cout << "Using URL: " << url << endl << endl;
+
 	cout << endl << "Neste fem avganger:" << endl << endl;
 
 	string jsonString = getDepartureDataJson(url);
