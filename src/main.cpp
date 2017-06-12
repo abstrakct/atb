@@ -63,9 +63,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	cout << "Reading busstop json data...";
 	readBusstopJsonFile(busstopData);
-	cout << " done." << endl;
 
 	cout << endl;
 	return 0;
