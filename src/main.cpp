@@ -60,8 +60,8 @@ int main(int argc, char *argv[])
 		std::cout << "Rute:             " << departures[i]["line"].asString() << std::endl;
 		std::cout << "Destinasjon:      " << departures[i]["destination"].asString() << std::endl;
 		std::cout << "Er data sanntid?  " << (departures[i]["isRealtimeData"].asBool() ? "ja" : "nei") << std::endl;
-		std::cout << "Planlagt ankomst: " << departures[i]["scheduledDepartureTime"].asString().substr(11,5) << std::endl;
 		std::cout << "Sanntid:          " << departures[i]["registeredDepartureTime"].asString().substr(11,5) << std::endl;
+		std::cout << "Planlagt ankomst: " << departures[i]["scheduledDepartureTime"].asString().substr(11,5) << std::endl;
 
 		std::cout << std::endl;
 	}
