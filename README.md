@@ -1,6 +1,6 @@
 # atbcli
 
-This is a small hobby project that aims to create a CLI program to access real time bus data in Trondheim, Norway.
+This is a small hobby project that aims to create a CLI program to access real time public transport data in Trondheim, Norway.
 It is in EXTREMELY early stages, and not really useful for anyone yet. Maybe one day it will be!
 It's basically just a test / proof of concept so far.
 
