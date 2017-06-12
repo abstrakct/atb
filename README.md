@@ -25,6 +25,7 @@ It should work to clone the repository and type 'make' in the top directory of t
 * curl
 * libcurlpp
 * jsoncpp
+* I've only tested it on Linux (specifically Arch Linux)
 
 ## Future goals/ideas
 * Get all publicly available data through the XML/SOAP API provided by AtB (atbapi by mpolden seems to export a limited subset?)
