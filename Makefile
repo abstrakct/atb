@@ -5,7 +5,7 @@
 
 #### PROJECT SETTINGS ####
 # The name of the executable to be created
-BIN_NAME = atb
+BIN_NAME = atbcli
 # Compiler used
 CXX = ccache g++
 # Extension of source files used in the project
