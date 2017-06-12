@@ -32,3 +32,4 @@ It should work to clone the repository and type 'make' in the top directory of t
 * Make it flexible and easy to use for everyone
 * Nice UI (ascii/text based probably)
 * Rewrite in python? Other language?
+* Personally I'm also thinking about creating a small IoT device to show nearby public transport departures.
