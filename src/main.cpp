@@ -9,39 +9,19 @@
 #include <json/json.h>
 
 using namespace curlpp::options;
+using namespace std;
+
+const string baseUrl = "https://atbapi.tar.io/api/v1/departures/";
 
 
-/*
- * 16010000 trikk fra byen
- * 16011000 trikk til byen
- *
- * 16010710 buss fra byen
- * 16011710 buss til byen
- */
-class departureData {
-	public:
-		departureData() {};
-		~departureData(){};
-
-		std::string destination;
-		bool isRealtimeData;
-		int line;
-		std::string registeredDepartureTime;
-		std::string  scheduledDepartureTime;
-};
-
-int main()
+string getDepartureDataJson(string url)
 {
 	std::stringstream os;
 
 	try {
 		curlpp::Cleanup myCleanup;
-		curlpp::Easy myRequest;
-
-		//myRequest.setOpt<Url>("https://atbapi.tar.io/api/v1/departures/16011000?pretty");
-		//myRequest.perform();
-		os << curlpp::options::Url("https://atbapi.tar.io/api/v1/departures/16011710?pretty");
-		//std::cout << os.str() << std::endl;
+		
+		os << curlpp::options::Url(url);
 	}
 
 	catch(curlpp::RuntimeError &e) {
@@ -52,51 +32,29 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 
-	os.seekg(0, std::ios::beg);
+	return os.str();
+}
 
-	Json::Value root;
-	Json::CharReaderBuilder rbuilder;
-	rbuilder["collectComments"] = false;
-	std::string errs;
-	bool ok = Json::parseFromStream(rbuilder, os, &root, &errs);
-	if(ok)
-		std::cout << "it worked" << std::endl;
-	else
-		std::cout << "it not workd!" << std::endl;
+int main(int argc, char *argv[])
+{
+	string departureCode, url;
 
-
-	std::cout << "size of root is " << root.size() << std::endl;
-	Json::Value d = root["departures"];
-	std::cout << "size of departures is " << d.size() << std::endl;
-
-	Json::Value test;
-	test = root["isGoingTowardsCentrum"];
-	if(test.isBool()) {
-		bool b = test.asBool();
-		std::cout << "is going towards centrum: ";
-		if(b)
-			std::cout << "yep";
-		else
-			std::cout << "nope";
-		std::cout << std::endl << std::endl;
-
+	// simple argument handling for now
+	if(argc <= 1) {
+		cout << "Please provide departure code!" << endl;
+		return 0;
+	} else {
+		departureCode = argv[1];
 	}
 
-	//departureData *dd = new departureData();
+	url = baseUrl + departureCode;
+	cout << "Using URL: " << url << endl;
 
-	//for(auto it : root["departures"]) {
-	//	Json::Value::Members m = it.getMemberNames();
-	//	//dd->destination = it.get("destination", "foo");
+	string test = getDepartureDataJson(url);
 
-	//	for(auto ms : m) {
-	//		std::cout << ms << std::endl;
-	//		std::cout << it.get(ms, "foo") << std::endl;
-	//	}
-	//	std::cout << std::endl;
-	//}
-
-	std::cout << " -----------------" << std::endl;
-
+	Json::Value root;
+	Json::Reader reader;
+	reader.parse(test, root);
 	const Json::Value& departures = root["departures"];
 	for(unsigned int i = 0; i < departures.size(); ++i) {
 		std::cout << "Rute:             " << departures[i]["line"].asString() << std::endl;
