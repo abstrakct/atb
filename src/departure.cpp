@@ -17,7 +17,7 @@ Departure::~Departure()
 {
 }
 
-// TODO: error checking!
+// TODO: more error checking?
 bool Departure::parseJsonString(string input, unsigned int index)
 {
 	Json::Value root;
@@ -25,6 +25,11 @@ bool Departure::parseJsonString(string input, unsigned int index)
 	
 	reader.parse(input, root);
 	const Json::Value& departures = root["departures"];
+
+	if(departures.size() == 0) {
+		cout << "Fant ingen avganger!" << endl;
+		return false;
+	}
 
 	if(index > departures.size()) {
 		cout << "Error:: Index higher than size!" << endl;

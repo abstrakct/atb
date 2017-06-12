@@ -9,6 +9,7 @@
 #include <json/json.h>
 
 #include "departure.h"
+#include "busstop.h"
 
 using namespace curlpp::options;
 using namespace std;
@@ -39,6 +40,8 @@ string getDepartureDataJson(string url)
 int main(int argc, char *argv[])
 {
 	string nodeID, url;
+	Departure d;
+	vector<Busstop> busstopData;
 
 	// simple argument handling for now
 	if(argc <= 1) {
@@ -54,12 +57,15 @@ int main(int argc, char *argv[])
 
 	string jsonString = getDepartureDataJson(url);
 
-	Departure d;
 	for(unsigned int j = 0; j < 5; ++j) {
 		if(d.parseJsonString(jsonString, j)) {
 			d.printNatural();
 		}
 	}
+
+	cout << "Reading busstop json data...";
+	readBusstopJsonFile(busstopData);
+	cout << " done." << endl;
 
 	cout << endl;
 	return 0;
